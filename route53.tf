@@ -8,9 +8,6 @@ resource "aws_route53_zone" "domain" {
   # Name of the hosted zone.
   name = var.domain
 
-  # A comment for the hosted zone. Defaults to 'Managed by Terraform'.
-  comment = "Primary domain of Prefab Village."
-
   # Destroy all records in the zone when destroying the zone.
   force_destroy = true
 }

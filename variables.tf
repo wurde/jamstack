@@ -33,3 +33,9 @@ variable "s3_bucket_subdomain_www" {
   description = "The S3 www subdomain bucket."
   default     = ""
 }
+
+variable "country_blacklist" {
+  type        = list(string)
+  description = "List of countries (ISO 3166-1-alpha-2 codes) to blacklist."
+  default     = []
+}

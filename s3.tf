@@ -130,16 +130,20 @@ resource "aws_s3_bucket_object" "index" {
 }
 
 resource "aws_s3_bucket_object" "favicon" {
-  bucket       = aws_s3_bucket.domain.id
-  key          = "favicon.png"
+  bucket = aws_s3_bucket.domain.id
+  key    = "favicon.png"
+  count  = fileexists("${var.dist_dir}/favicon.png") ? 1 : 0
+
   source       = "${var.dist_dir}/favicon.png"
   etag         = filemd5("${var.dist_dir}/favicon.png")
   content_type = "image/png"
 }
 
 resource "aws_s3_bucket_object" "robots-txt" {
-  bucket       = aws_s3_bucket.domain.id
-  key          = "robots.txt"
+  bucket = aws_s3_bucket.domain.id
+  key    = "robots.txt"
+  count  = fileexists("${var.dist_dir}/robots.txt") ? 1 : 0
+
   source       = "${var.dist_dir}/robots.txt"
   etag         = filemd5("${var.dist_dir}/robots.txt")
   content_type = "text/plain"

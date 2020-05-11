@@ -128,3 +128,23 @@ resource "aws_s3_bucket_object" "index" {
   # A standard MIME type describing the format of the object data.
   content_type = "text/html"
 }
+
+resource "aws_s3_bucket_object" "all-js" {
+  for_each = fileset("${var.dist_dir}/static/js", "*")
+
+  bucket       = aws_s3_bucket.domain.id
+  key          = "static/js/${each.key}"
+  source       = "${var.dist_dir}/static/js/${each.key}"
+  etag         = filemd5("${var.dist_dir}/static/js/${each.key}")
+  content_type = "application/javascript"
+}
+
+resource "aws_s3_bucket_object" "all-css" {
+  for_each = fileset("${var.dist_dir}/static/css", "*")
+
+  bucket       = aws_s3_bucket.domain.id
+  key          = "static/css/${each.key}"
+  source       = "${var.dist_dir}/static/css/${each.key}"
+  etag         = filemd5("${var.dist_dir}/static/css/${each.key}")
+  content_type = "text/css"
+}

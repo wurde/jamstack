@@ -76,3 +76,12 @@ resource "aws_s3_bucket_policy" "domain_policy" {
 }
 POLICY
 }
+
+resource "aws_s3_bucket" "www" {
+  bucket = var.s3_bucket_subdomain_www == "" ? var.subdomain_www : var.s3_bucket_subdomain_www
+
+  website {
+    # Hostname to redirect all website requests for this bucket.
+    redirect_all_requests_to = var.s3_bucket_domain == "" ? "http://${var.domain}" : "http://${var.s3_bucket_domain}"
+  }
+}

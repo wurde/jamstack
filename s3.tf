@@ -109,3 +109,22 @@ resource "aws_s3_bucket_policy" "www_policy" {
 POLICY
 }
 
+# When you enable website hosting, you must also configure and upload an index
+# document. An index document is a webpage that Amazon S3 returns when a request
+# is made to the root of a website or any subfolder.
+resource "aws_s3_bucket_object" "index" {
+  # Name of the bucket to put the file in.
+  bucket = aws_s3_bucket.domain.id
+
+  # Name of the object once it is in the bucket.
+  key = "index.html"
+
+  # Path to the file uploaded as raw bytes.
+  source = "${var.dist_dir}/index.html"
+
+  # Used to trigger updates.
+  etag = filemd5("${var.dist_dir}/index.html")
+
+  # A standard MIME type describing the format of the object data.
+  content_type = "text/html"
+}

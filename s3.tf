@@ -26,7 +26,7 @@ resource "aws_s3_bucket" "domain" {
   # Define how Amazon S3 manages objects during their lifetime.
   lifecycle_rule {
     # Object key prefix identifying one or more objects to apply the rule.
-    prefix  = "/"
+    prefix = "/"
 
     # Enable this lifecycle rule.
     enabled = true
@@ -52,4 +52,27 @@ resource "aws_s3_bucket" "domain" {
 
   # All objects (including locked) are deleted when deleting a bucket.
   force_destroy = true
+}
+
+resource "aws_s3_bucket_policy" "domain_policy" {
+  bucket = aws_s3_bucket.domain.id
+
+  policy = <<POLICY
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "PublicReadGetObject",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": [
+                "s3:GetObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::${var.s3_bucket_domain == "" ? var.domain : var.s3_bucket_domain}/*"
+            ]
+        }
+    ]
+}
+POLICY
 }

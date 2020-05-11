@@ -129,6 +129,22 @@ resource "aws_s3_bucket_object" "index" {
   content_type = "text/html"
 }
 
+resource "aws_s3_bucket_object" "favicon" {
+  bucket       = aws_s3_bucket.domain.id
+  key          = "favicon.png"
+  source       = "${var.dist_dir}/favicon.png"
+  etag         = filemd5("${var.dist_dir}/favicon.png")
+  content_type = "image/png"
+}
+
+resource "aws_s3_bucket_object" "robots-txt" {
+  bucket       = aws_s3_bucket.domain.id
+  key          = "robots.txt"
+  source       = "${var.dist_dir}/robots.txt"
+  etag         = filemd5("${var.dist_dir}/robots.txt")
+  content_type = "text/plain"
+}
+
 resource "aws_s3_bucket_object" "all-js" {
   for_each = fileset("${var.dist_dir}/static/js", "*")
 

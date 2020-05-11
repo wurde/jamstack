@@ -1,6 +1,12 @@
 # Define input variables.
 # https://www.terraform.io/docs/configuration/variables.html
 
+variable "region" {
+  default     = "us-east-1"
+  type        = string
+  description = "Which AWS region to use."
+}
+
 variable "dist_dir" {
   type        = string
   description = "The distribution directory to serve via static asset host."

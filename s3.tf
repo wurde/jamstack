@@ -15,4 +15,11 @@ resource "aws_s3_bucket" "domain" {
   website {
     index_document = "index.html"
   }
+
+  # Enable versioning. Once you version-enable a bucket, it can never
+  #   return to an unversioned state. You can, however, suspend versioning
+  #   on that bucket.
+  versioning {
+    enabled = true
+  }
 }

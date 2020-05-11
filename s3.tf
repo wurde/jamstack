@@ -23,6 +23,33 @@ resource "aws_s3_bucket" "domain" {
     enabled = true
   }
 
+  # Define how Amazon S3 manages objects during their lifetime.
+  lifecycle_rule {
+    # Object key prefix identifying one or more objects to apply the rule.
+    prefix  = "/"
+
+    # Enable this lifecycle rule.
+    enabled = true
+
+    noncurrent_version_transition {
+      # Specify the number of days after object creation
+      #   when the specific rule action takes effect.
+      days = 30
+
+      # Specifies the Amazon S3 storage class.
+      storage_class = "ONEZONE_IA"
+    }
+
+    noncurrent_version_transition {
+      days          = 60
+      storage_class = "GLACIER"
+    }
+
+    noncurrent_version_expiration {
+      days = 365
+    }
+  }
+
   # All objects (including locked) are deleted when deleting a bucket.
   force_destroy = true
 }

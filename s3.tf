@@ -37,12 +37,7 @@ resource "aws_s3_bucket" "domain" {
       days = 30
 
       # Specifies the Amazon S3 storage class.
-      storage_class = "ONEZONE_IA"
-    }
-
-    noncurrent_version_transition {
-      days          = 60
-      storage_class = "GLACIER"
+      storage_class = "DEEP_ARCHIVE"
     }
 
     noncurrent_version_expiration {

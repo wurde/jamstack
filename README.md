@@ -12,6 +12,7 @@ This technology stack is [J]avascript, [A]PIs, and [M]arkdown. It delivers a bet
 
 - CloudFront OAI setup. [Terraform Link](https://www.terraform.io/docs/providers/aws/r/cloudfront_origin_access_identity.html) and [AWS Link](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html)
 - Cognito SMS Multi-Factor Authentication optional setup. [Terraform Link](https://www.terraform.io/docs/providers/aws/r/cognito_user_pool.html) [AWS Link](https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-mfa.html)
+- Cognito email customization.
 
 ## Getting started
 

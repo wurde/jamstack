@@ -18,9 +18,9 @@ Example of calling this Terraform module:
 module "static-website" {
   source = "github.com/wurde/static-website"
 
-  dist_dir      = "."
-  domain        = "example.com"
-  subdomains    = ["www.example.com"]
+  dist_dir   = "."
+  domain     = "example.com"
+  subdomains = ["www.example.com"]
 }
 ```
 

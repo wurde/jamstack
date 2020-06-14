@@ -12,21 +12,15 @@ Deployment is uploading pre-rendered assets to a static asset host. A CDN provid
 
 ## Getting started
 
-Configure the AWS CLI with your account:
-
-```bash
-aws configure
-```
-
 Example of calling this Terraform module:
 
 ```terraform
-module "jamstack" {
+module "static-website" {
   source = "github.com/wurde/static-website"
 
-  dist_dir      = "redwoodblog/web/dist"
+  dist_dir      = "."
   domain        = "example.com"
-  subdomain_www = "www.example.com"
+  subdomains    = ["www.example.com"]
 }
 ```
 

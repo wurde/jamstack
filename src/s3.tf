@@ -112,4 +112,6 @@ resource "aws_s3_bucket_object" "dist" {
   key    = each.value
   source = "${var.dist_dir}/${each.value}"
   etag   = filemd5("${var.dist_dir}/${each.value}")
+
+  content_type = "text/html"
 }

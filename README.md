@@ -1,31 +1,27 @@
 # Static Website
 
-> **Warning:** This project is NOT production-ready. Until version `1.0` breaking changes may exist in master.
+> **Warning:** This is NOT production-ready and breaking changes may occur.
 
-This is a Terraform configuration for deploying static websites. Terraform knowledge is a pre-requisite. It enables Infrastructure as Code. [Learn more about it here](https://www.terraform.io).
-
-Deployment is uploading pre-rendered assets to a static asset host. A CDN provides asset distribution at low latencies and high resiliency.
-
-## TODO
-
-- [ ] Provide Google Cloud Provider (GCP) as an option.
+This Terraform module deploys a static website to either AWS or GCP.
 
 ## Getting started
 
-Example of calling this Terraform module:
+Example usage within a Terraform configuration:
 
 ```terraform
 module "static-website" {
   source = "github.com/wurde/static-website"
 
-  dist_dir   = "."
+  dist_dir   = "public"
   domain     = "example.com"
-  subdomains = ["www.example.com"]
+  #subdomains = ["www.example.com"]
 }
 ```
 
-Once defined you'll need to refresh state:
+## Why a Static Website?
 
-```bash
-terraform init
-```
+Deployment is uploading pre-rendered assets to a static asset host. A CDN provides asset distribution at low latencies and high resiliency.
+
+## Why Terraform?
+
+Terraform enables Infrastructure as Code. [Learn more about it here](https://www.terraform.io).

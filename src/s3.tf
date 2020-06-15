@@ -168,8 +168,8 @@ POLICY
 resource "aws_s3_bucket_object" "other" {
   for_each = fileset(var.dist_dir, "**")
 
-  bucket       = aws_s3_bucket.domain.id
-  key          = each.value
-  source       = "${var.dist_dir}/${each.value}"
-  etag         = filemd5("${var.dist_dir}/${each.value}")
+  bucket = aws_s3_bucket.domain.id
+  key    = each.value
+  source = "${var.dist_dir}/${each.value}"
+  etag   = filemd5("${var.dist_dir}/${each.value}")
 }

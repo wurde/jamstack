@@ -10,15 +10,15 @@ resource "aws_cognito_user_pool" "main" {
     case_sensitive = false
   }
 
-    # TODO add to username
-    # # (Optional) - Specifies the string constraints.
-    # string_attribute_constraints {
-    #   # The maximum length.
-    #   max_length = 25
+  # TODO add to username
+  # # (Optional) - Specifies the string constraints.
+  # string_attribute_constraints {
+  #   # The maximum length.
+  #   max_length = 25
 
-    #   # The minimum length.
-    #   min_length = 3
-    # }
+  #   # The minimum length.
+  #   min_length = 3
+  # }
 
   # (Optional) - A container with the schema attributes of a
   #   user pool. Schema attributes from the standard attribute

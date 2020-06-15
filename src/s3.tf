@@ -113,5 +113,5 @@ resource "aws_s3_bucket_object" "dist" {
   source = "${var.dist_dir}/${each.value}"
   etag   = filemd5("${var.dist_dir}/${each.value}")
 
-  content_type = "text/html"
+  content_type = lookup(local.mime_types, split(".", each.value)[-1])
 }

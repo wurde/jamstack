@@ -19,6 +19,7 @@ save time and money. Here are few high quality options:
 Some reasons why Terraform is a good candidate:
 
 - Infrastructure is already managed by Terraform.
+- Requirement to use a cloud-agnostic IaC solution.
 
 ## Getting started
 

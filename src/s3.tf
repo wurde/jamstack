@@ -9,6 +9,7 @@ locals {
     eot   = "application/vnd.ms-fontobject"
     png   = "image/png"
     jpg   = "image/jpeg"
+    gif   = "image/gif"
     jpeg  = "image/jpeg"
     svg   = "image/svg+xml"
     ttf   = "application/octet-stream"

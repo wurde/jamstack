@@ -1,4 +1,5 @@
 # Define CloudFront resources.
+# https://www.terraform.io/docs/providers/aws/r/cloudfront_distribution.html
 
 locals {
   s3_domain_id = "s3-domain-origin"

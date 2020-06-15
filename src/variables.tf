@@ -43,5 +43,5 @@ variable "s3_bucket_subdomain_www" {
 variable "country_blacklist" {
   type        = list(string)
   description = "List of countries (ISO 3166-1-alpha-2 codes) to blacklist."
-  default     = []
+  default     = ["IR", "KP"]
 }

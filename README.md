@@ -2,7 +2,23 @@
 
 > **Warning:** This is NOT production-ready and breaking changes may occur.
 
-This Terraform module deploys a static website to either AWS or GCP.
+This Terraform module deploys a static website to either
+AWS or GCP.
+
+## Consider this first
+
+Prefer a managed solution over custom code. Before exploring
+the Terraform option further consider the alternatives that'll
+save time and money. Here are few high quality options:
+
+- [Firebase](https://firebase.google.com) by Google.
+- [Amplify](https://aws.amazon.com/amplify) by AWS.
+- [Netlify](https://www.netlify.com)
+- [GitHub Pages](https://pages.github.com)
+
+Some reasons why Terraform is a good candidate:
+
+- Infrastructure is already managed by Terraform.
 
 ## Getting started
 
@@ -18,9 +34,10 @@ module "static-website" {
 }
 ```
 
-## Why a Static Website?
+## Why a static website?
 
-Deployment is uploading pre-rendered assets to a static asset host. A CDN provides asset distribution at low latencies and high resiliency.
+Deployment is uploading pre-rendered assets to a static asset host.
+A CDN provides asset distribution at low latencies and high resiliency.
 
 ## Why Terraform?
 

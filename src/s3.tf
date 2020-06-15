@@ -105,62 +105,71 @@ resource "aws_s3_bucket_policy" "www_policy" {
 POLICY
 }
 
-# When you enable website hosting, you must also configure and upload an index
-# document. An index document is a webpage that Amazon S3 returns when a request
-# is made to the root of a website or any subfolder.
-resource "aws_s3_bucket_object" "index" {
-  # Name of the bucket to put the file in.
-  bucket = aws_s3_bucket.domain.id
+# # When you enable website hosting, you must also configure and upload an index
+# # document. An index document is a webpage that Amazon S3 returns when a request
+# # is made to the root of a website or any subfolder.
+# resource "aws_s3_bucket_object" "index" {
+#   # Name of the bucket to put the file in.
+#   bucket = aws_s3_bucket.domain.id
 
-  # Name of the object once it is in the bucket.
-  key = "index.html"
+#   # Name of the object once it is in the bucket.
+#   key = "index.html"
 
-  # Path to the file uploaded as raw bytes.
-  source = "${var.dist_dir}/index.html"
+#   # Path to the file uploaded as raw bytes.
+#   source = "${var.dist_dir}/index.html"
 
-  # Used to trigger updates.
-  etag = filemd5("${var.dist_dir}/index.html")
+#   # Used to trigger updates.
+#   etag = filemd5("${var.dist_dir}/index.html")
 
-  # A standard MIME type describing the format of the object data.
-  content_type = "text/html"
-}
+#   # A standard MIME type describing the format of the object data.
+#   content_type = "text/html"
+# }
 
-resource "aws_s3_bucket_object" "favicon" {
-  bucket = aws_s3_bucket.domain.id
-  key    = "favicon.png"
-  count  = fileexists("${var.dist_dir}/favicon.png") ? 1 : 0
+# resource "aws_s3_bucket_object" "favicon" {
+#   bucket = aws_s3_bucket.domain.id
+#   key    = "favicon.png"
+#   count  = fileexists("${var.dist_dir}/favicon.png") ? 1 : 0
 
-  source       = "${var.dist_dir}/favicon.png"
-  etag         = filemd5("${var.dist_dir}/favicon.png")
-  content_type = "image/png"
-}
+#   source       = "${var.dist_dir}/favicon.png"
+#   etag         = filemd5("${var.dist_dir}/favicon.png")
+#   content_type = "image/png"
+# }
 
-resource "aws_s3_bucket_object" "robots-txt" {
-  bucket = aws_s3_bucket.domain.id
-  key    = "robots.txt"
-  count  = fileexists("${var.dist_dir}/robots.txt") ? 1 : 0
+# resource "aws_s3_bucket_object" "robots-txt" {
+#   bucket = aws_s3_bucket.domain.id
+#   key    = "robots.txt"
+#   count  = fileexists("${var.dist_dir}/robots.txt") ? 1 : 0
 
-  source       = "${var.dist_dir}/robots.txt"
-  etag         = filemd5("${var.dist_dir}/robots.txt")
-  content_type = "text/plain"
-}
+#   source       = "${var.dist_dir}/robots.txt"
+#   etag         = filemd5("${var.dist_dir}/robots.txt")
+#   content_type = "text/plain"
+# }
 
-resource "aws_s3_bucket_object" "all-js" {
-  for_each = fileset("${var.dist_dir}/static/js", "*")
+# resource "aws_s3_bucket_object" "all-js" {
+#   for_each = fileset("${var.dist_dir}/static/js", "*")
+
+#   bucket       = aws_s3_bucket.domain.id
+#   key          = "static/js/${each.key}"
+#   source       = "${var.dist_dir}/static/js/${each.key}"
+#   etag         = filemd5("${var.dist_dir}/static/js/${each.key}")
+#   content_type = "application/javascript"
+# }
+
+# resource "aws_s3_bucket_object" "all-css" {
+#   for_each = fileset("${var.dist_dir}/static/css", "*")
+
+#   bucket       = aws_s3_bucket.domain.id
+#   key          = "static/css/${each.key}"
+#   source       = "${var.dist_dir}/static/css/${each.key}"
+#   etag         = filemd5("${var.dist_dir}/static/css/${each.key}")
+#   content_type = "text/css"
+# }
+
+resource "aws_s3_bucket_object" "other" {
+  for_each = fileset(var.dist_dir, "**")
 
   bucket       = aws_s3_bucket.domain.id
-  key          = "static/js/${each.key}"
-  source       = "${var.dist_dir}/static/js/${each.key}"
-  etag         = filemd5("${var.dist_dir}/static/js/${each.key}")
-  content_type = "application/javascript"
-}
-
-resource "aws_s3_bucket_object" "all-css" {
-  for_each = fileset("${var.dist_dir}/static/css", "*")
-
-  bucket       = aws_s3_bucket.domain.id
-  key          = "static/css/${each.key}"
-  source       = "${var.dist_dir}/static/css/${each.key}"
-  etag         = filemd5("${var.dist_dir}/static/css/${each.key}")
-  content_type = "text/css"
+  key          = each.value
+  source       = "${var.dist_dir}/${each.value}"
+  etag         = filemd5("${var.dist_dir}/${each.value}")
 }

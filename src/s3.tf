@@ -50,28 +50,28 @@ resource "aws_s3_bucket" "domain" {
   force_destroy = true
 }
 
-resource "aws_s3_bucket_policy" "domain_policy" {
-  bucket = aws_s3_bucket.domain.id
+# resource "aws_s3_bucket_policy" "domain_policy" {
+#   bucket = aws_s3_bucket.domain.id
 
-  policy = <<POLICY
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "PublicReadGetObject",
-            "Effect": "Allow",
-            "Principal": "*",
-            "Action": [
-                "s3:GetObject"
-            ],
-            "Resource": [
-                "arn:aws:s3:::${var.s3_bucket_domain == "" ? var.domain : var.s3_bucket_domain}/*"
-            ]
-        }
-    ]
-}
-POLICY
-}
+#   policy = <<POLICY
+# {
+#     "Version": "2012-10-17",
+#     "Statement": [
+#         {
+#             "Sid": "PublicReadGetObject",
+#             "Effect": "Allow",
+#             "Principal": "*",
+#             "Action": [
+#                 "s3:GetObject"
+#             ],
+#             "Resource": [
+#                 "arn:aws:s3:::${var.s3_bucket_domain == "" ? var.domain : var.s3_bucket_domain}/*"
+#             ]
+#         }
+#     ]
+# }
+# POLICY
+# }
 
 resource "aws_s3_bucket" "www" {
   bucket = var.s3_bucket_subdomain_www == "" ? var.subdomain_www : var.s3_bucket_subdomain_www
@@ -82,28 +82,28 @@ resource "aws_s3_bucket" "www" {
   }
 }
 
-resource "aws_s3_bucket_policy" "www_policy" {
-  bucket = aws_s3_bucket.www.id
+# resource "aws_s3_bucket_policy" "www_policy" {
+#   bucket = aws_s3_bucket.www.id
 
-  policy = <<POLICY
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "PublicReadGetObject",
-            "Effect": "Allow",
-            "Principal": "*",
-            "Action": [
-                "s3:GetObject"
-            ],
-            "Resource": [
-                "arn:aws:s3:::${var.s3_bucket_subdomain_www == "" ? var.subdomain_www : var.s3_bucket_subdomain_www}/*"
-            ]
-        }
-    ]
-}
-POLICY
-}
+#   policy = <<POLICY
+# {
+#     "Version": "2012-10-17",
+#     "Statement": [
+#         {
+#             "Sid": "PublicReadGetObject",
+#             "Effect": "Allow",
+#             "Principal": "*",
+#             "Action": [
+#                 "s3:GetObject"
+#             ],
+#             "Resource": [
+#                 "arn:aws:s3:::${var.s3_bucket_subdomain_www == "" ? var.subdomain_www : var.s3_bucket_subdomain_www}/*"
+#             ]
+#         }
+#     ]
+# }
+# POLICY
+# }
 
 resource "aws_s3_bucket_object" "dist" {
   for_each = fileset(var.dist_dir, "**")

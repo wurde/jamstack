@@ -94,16 +94,14 @@ resource "aws_cloudfront_distribution" "cdn" {
 
   # The SSL configuration for this distribution (maximum one).
   viewer_certificate {
-    cloudfront_default_certificate = true
+    # The ARN of the AWS Certificate Manager certificate that you wish to use with this distribution.
+    acm_certificate_arn = aws_acm_certificate.ssl.arn
 
-    # # The ARN of the AWS Certificate Manager certificate that you wish to use with this distribution.
-    # acm_certificate_arn = aws_acm_certificate.ssl.arn
+    # The minimum version of the SSL protocol that you want CloudFront to use for HTTPS connections.
+    minimum_protocol_version = "TLSv1"
 
-    # # The minimum version of the SSL protocol that you want CloudFront to use for HTTPS connections.
-    # minimum_protocol_version = "TLSv1"
-
-    # # Specifies how you want CloudFront to serve HTTPS requests.
-    # ssl_support_method = "sni-only"
+    # Specifies how you want CloudFront to serve HTTPS requests.
+    ssl_support_method = "sni-only"
   }
 
   # The object to return when an user requests the root URL.

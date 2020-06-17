@@ -45,3 +45,9 @@ variable "country_blacklist" {
   description = "List of countries (ISO 3166-1-alpha-2 codes) to blacklist."
   default     = ["IR", "KP"]
 }
+
+variable "shield_protection" {
+  type        = bool
+  description = "Enable advanced shield protection. WARNING: high costs associated!"
+  default     = false
+}

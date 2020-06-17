@@ -17,12 +17,6 @@ variable "domain" {
   description = "The primary domain name."
 }
 
-variable "domain_comment" {
-  type        = string
-  description = "A comment for the hosted zone. Defaults to 'Managed by Terraform'."
-  default     = "Managed by Terraform."
-}
-
 variable "subdomain_www" {
   type        = string
   description = "The www subdomain name."

@@ -8,7 +8,7 @@ AWS or GCP.
 ## Consider this first
 
 Prefer a managed solution over custom code. Before exploring
-the Terraform option further consider the alternatives that'll
+the Terraform option, consider the alternatives that'll
 save time and money. Here are few high quality options:
 
 - [Firebase](https://firebase.google.com) by Google.

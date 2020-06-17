@@ -26,7 +26,7 @@ resource "aws_cloudfront_distribution" "cdn" {
   }
 
   # Extra CNAMEs for this distribution. Whitelisting Route 53 alias records.
-  aliases = [var.domain]
+  aliases = [var.domain] # TODO list of alias domains
 
   # The default cache behavior for this distribution (maximum one).
   default_cache_behavior {

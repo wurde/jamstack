@@ -17,20 +17,9 @@ variable "domain" {
   description = "The primary domain name."
 }
 
-variable "subdomain_www" {
-  type        = string
-  description = "The www subdomain name."
-}
-
 variable "s3_bucket_domain" {
   type        = string
   description = "The S3 root domain bucket."
-  default     = ""
-}
-
-variable "s3_bucket_subdomain_www" {
-  type        = string
-  description = "The S3 www subdomain bucket."
   default     = ""
 }
 

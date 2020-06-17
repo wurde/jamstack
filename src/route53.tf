@@ -57,6 +57,8 @@ resource "aws_route53_record" "AAAA" {
   }
 }
 
+# TODO list of CNAME aliases for CloudFront
+
 resource "aws_route53_record" "cert_validation" {
   zone_id = aws_route53_zone.domain.zone_id
   name    = aws_acm_certificate.ssl.domain_validation_options.0.resource_record_name

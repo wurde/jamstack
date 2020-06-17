@@ -118,7 +118,7 @@ resource "aws_s3_bucket_object" "dist" {
 }
 
 resource "aws_s3_bucket_object" "toggle" {
-  count = var.shield_protection == true ? 1 : 0
+  count = var.shield_protection ? 1 : 0
 
   acl     = "public-read"
   bucket  = aws_s3_bucket.domain.id

@@ -29,9 +29,9 @@ Example usage within a Terraform configuration:
 module "static-website" {
   source = "github.com/wurde/static-website"
 
-  dist_dir   = "public"
-  domain     = "example.com"
-  #subdomains = ["www.example.com"]
+  dist_dir      = "public"
+  domain        = "example.com"
+  alias_domains = ["www.example.com"]
 }
 ```
 

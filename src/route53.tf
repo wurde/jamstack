@@ -58,10 +58,12 @@ resource "aws_route53_record" "AAAA" {
 }
 
 resource "aws_route53_record" "CNAME" {
+  for_each = var.alias_domains
+
   zone_id = aws_route53_zone.domain.zone_id
-  name    = var.domain
+  name    = each.key
   type    = "CNAME"
-  records = var.alias_domains
+  records = [var.domain]
   ttl     = 600
 }
 

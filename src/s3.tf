@@ -118,7 +118,7 @@ resource "aws_s3_bucket_object" "dist" {
 }
 
 resource "aws_s3_bucket_object" "toggle" {
-  count = 1
+  count = 0
 
   acl     = "public-read"
   bucket  = aws_s3_bucket.domain.id

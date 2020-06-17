@@ -9,5 +9,4 @@ module "resources" {
   s3_bucket_domain        = var.s3_bucket_domain
   s3_bucket_subdomain_www = var.s3_bucket_subdomain_www
   country_blacklist       = var.country_blacklist
-  toggle                  = var.toggle
 }

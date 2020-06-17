@@ -18,7 +18,7 @@ variable "domain" {
 }
 
 variable "alias_domains" {
-  type        = set(string)
+  type        = list(string)
   description = "The other alias domain names (www.example.com)."
 }
 

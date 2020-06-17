@@ -20,6 +20,7 @@ variable "domain" {
 variable "alias_domains" {
   type        = list(string)
   description = "The other alias domain names (www.example.com)."
+  default     = []
 }
 
 variable "s3_bucket_domain" {

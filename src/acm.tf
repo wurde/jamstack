@@ -6,6 +6,9 @@ resource "aws_acm_certificate" "ssl" {
   # A domain name for which the certificate should be issued
   domain_name = var.domain
 
+  # Additional names that are supported by this certificate.
+  subject_alternative_names = var.alias_domains
+
   # Which method to use for validation. DNS or EMAIL are valid.
   validation_method = "DNS"
 

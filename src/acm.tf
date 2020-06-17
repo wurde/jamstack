@@ -19,8 +19,5 @@ resource "aws_acm_certificate" "ssl" {
 
 resource "aws_acm_certificate_validation" "cert" {
   certificate_arn         = aws_acm_certificate.ssl.arn
-  validation_record_fqdns = concat(
-    [aws_route53_record.cert_validation.fqdn],
-    aws_route53_record.CNAME[*].fqdn
-  )
+  validation_record_fqdns = aws_route53_record.cert_validation[*].fqdn
 }

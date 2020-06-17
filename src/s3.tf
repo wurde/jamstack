@@ -115,3 +115,11 @@ resource "aws_s3_bucket_object" "dist" {
 
   content_type = lookup(local.mime_types, split(".", each.value)[length(split(".", each.value)) - 1])
 }
+
+resource "aws_s3_bucket_object" "toggle" {
+  count = var.shield_protection ? 1 : 0
+
+  bucket = aws_s3_bucket.domain.id
+  key = "toggle.txt"
+  content = "This is a test."
+}

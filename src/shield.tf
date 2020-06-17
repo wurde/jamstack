@@ -4,5 +4,5 @@
 
 //resource "aws_shield_protection" "cdn" {
 //  name         = "ddos_protection"
-//  resource_arn = var.shield_resource_arn
+//  resource_arn = aws_cloudfront_distribution.cdn.arn
 //}

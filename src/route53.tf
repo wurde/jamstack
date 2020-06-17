@@ -57,7 +57,13 @@ resource "aws_route53_record" "AAAA" {
   }
 }
 
-# TODO list of CNAME aliases for CloudFront
+resource "aws_route53_record" "CNAME" {
+  zone_id = aws_route53_zone.domain.zone_id
+  name    = var.domain
+  type    = "CNAME"
+  records = var.alias_domains
+  ttl     = 600
+}
 
 resource "aws_route53_record" "cert_validation" {
   zone_id = aws_route53_zone.domain.zone_id

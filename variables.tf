@@ -17,6 +17,11 @@ variable "domain" {
   description = "The primary domain name."
 }
 
+variable "alias_domains" {
+  type        = set(string)
+  description = "The other alias domain names (www.example.com)."
+}
+
 variable "s3_bucket_domain" {
   type        = string
   description = "The S3 root domain bucket."

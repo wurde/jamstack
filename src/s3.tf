@@ -108,6 +108,7 @@ resource "aws_s3_bucket" "www" {
 resource "aws_s3_bucket_object" "dist" {
   for_each = fileset(var.dist_dir, "**")
 
+  acl    = "public-read"
   bucket = aws_s3_bucket.domain.id
   key    = each.value
   source = "${var.dist_dir}/${each.value}"
@@ -119,6 +120,7 @@ resource "aws_s3_bucket_object" "dist" {
 resource "aws_s3_bucket_object" "toggle" {
   count = var.shield_protection ? 1 : 0
 
+  acl     = "public-read"
   bucket  = aws_s3_bucket.domain.id
   key     = "toggle.txt"
   content = "This is a test."

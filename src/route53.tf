@@ -68,7 +68,8 @@ resource "aws_route53_record" "CNAME" {
 }
 
 resource "aws_route53_record" "cert_validation" {
-  for_each = toset(aws_acm_certificate.ssl.domain_validation_options)
+  for_each = { for option in aws_acm_certificate.ssl.domain_validation_options: option.resource_record_name => option }
+  # for_each = toset(aws_acm_certificate.ssl.domain_validation_options)
 
   zone_id = aws_route53_zone.domain.zone_id
   name    = each.value.resource_record_name

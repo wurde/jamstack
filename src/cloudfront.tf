@@ -109,4 +109,6 @@ resource "aws_cloudfront_distribution" "cdn" {
 
   # Whether the IPv6 is enabled for the distribution.
   is_ipv6_enabled = true
+
+  depends_on = [aws_acm_certificate.ssl]
 }

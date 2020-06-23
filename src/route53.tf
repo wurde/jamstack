@@ -68,11 +68,11 @@ resource "aws_route53_record" "CNAME" {
 }
 
 resource "aws_route53_record" "cert_validation" {
-  for_each = aws_acm_certificate.ssl.domain_validation_options
+  count = length(var.alias_domains) + 1
 
   zone_id = aws_route53_zone.domain.zone_id
-  name    = each.value.resource_record_name
-  type    = each.value.resource_record_type
-  records = [each.value.resource_record_value]
+  name    = aws_acm_certificate.ssl.domain_validation_options[count.index].resource_record_name
+  type    = aws_acm_certificate.ssl.domain_validation_options[count.index].resource_record_type
+  records = [aws_acm_certificate.ssl.domain_validation_options[count.index].resource_record_value]
   ttl     = 60
 }

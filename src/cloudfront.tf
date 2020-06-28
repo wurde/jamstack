@@ -49,11 +49,11 @@ resource "aws_cloudfront_distribution" "cdn" {
     # The default amount of time (in seconds) that an object is in a CloudFront
     #   cache before CloudFront forwards another request in the absence of an Cache-Control
     #   max-age or Expires header. Defaults to 1 day.
-    default_ttl = 86400
+    default_ttl = var.default_ttl
 
     # The maximum amount of time (in seconds) that an object is in a CloudFront
     #   cache before CloudFront forwards another request to your origin to determine whether
-    #   the object has been updated.
+    #   the object has been updated. Defaults to 365 days.
     max_ttl = 31536000
 
     # Whether you want CloudFront to automatically compress content for web

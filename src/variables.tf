@@ -29,6 +29,12 @@ variable "s3_bucket_domain" {
   default     = ""
 }
 
+variable "default_ttl" {
+  type        = number
+  description = "The default TTL for CloudFront in seconds (default is 1 day)."
+  default     = 86400
+}
+
 variable "country_blacklist" {
   type        = list(string)
   description = "List of countries (ISO 3166-1-alpha-2 codes) to blacklist."

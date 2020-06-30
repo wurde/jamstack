@@ -39,7 +39,8 @@ module "static-website" {
 
 ## Why Terraform?
 
-Terraform enables Infrastructure as Code. [Learn more about it here](https://www.terraform.io).
+Terraform enables Infrastructure as Code.
+[Learn more about it here](https://www.terraform.io).
 
 ## License
 

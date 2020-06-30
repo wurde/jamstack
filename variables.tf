@@ -7,6 +7,12 @@ variable "region" {
   default     = "us-east-1"
 }
 
+variable "cloud" {
+  type        = string
+  description = "What cloud provider? [AWS or GCP]"
+  default     = "aws"
+}
+
 variable "dist_dir" {
   type        = string
   description = "The distribution directory to serve via static asset host."

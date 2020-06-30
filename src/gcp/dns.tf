@@ -14,13 +14,33 @@ resource "google_dns_managed_zone" "domain" {
   name = "terraform-dns-domain"
 }
 
-resource "google_dns_record_set" "a" {
-  name         = "backend.${google_dns_managed_zone.prod.dns_name}"
-  managed_zone = google_dns_managed_zone.prod.name
-  type         = "A"
-  ttl          = 300
+# https://www.terraform.io/docs/providers/google/r/dns_record_set.html
+resource "google_dns_record_set" "A" {
+  # The name of the zone in which this record set will reside.
+  managed_zone = google_dns_managed_zone.domain.name
 
+  # The DNS name this record set will apply to.
+  name = google_dns_managed_zone.prod.dns_name
+
+  # The record type. Valid values are A, AAAA, CAA, CNAME, MX, NAPTR,
+  #   NS, PTR, SOA, SPF, SRV and TXT.
+  type = "A"
+
+  # The time-to-live of this record set (seconds).
+  ttl = 300
+
+  # The string data for the records in this record set whose
+  # meaning depends on the DNS type.
   rrdatas = ["8.8.8.8"]
+}
+
+# https://www.terraform.io/docs/providers/google/r/dns_record_set.html
+resource "google_dns_record_set" "AAAA" {
+  managed_zone = google_dns_managed_zone.domain.name
+  name         = google_dns_managed_zone.prod.dns_name
+  type         = "AAAA"
+  ttl          = 300
+  rrdatas      = ["8.8.8.8"]
 }
 
 resource "google_dns_managed_zone" "prod" {

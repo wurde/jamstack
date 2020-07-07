@@ -29,6 +29,8 @@ resource "aws_route53_record" "A" {
   #   NS, PTR, SOA, SPF, SRV and TXT.
   type = "A"
 
+  # If an alias record points to an AWS resource, you can't set
+  # the time to live (TTL); it uses the default TTL for the resource.
   alias {
     # DNS domain name for a CloudFront distribution, S3 bucket, ELB,
     #   or another resource record set in this hosted zone.
@@ -65,7 +67,7 @@ resource "aws_route53_record" "CNAME" {
   name    = var.alias_domains[count.index]
   type    = "CNAME"
   records = [var.domain]
-  ttl     = 600
+  ttl     = 86400
 }
 
 resource "aws_route53_record" "cert_validation" {

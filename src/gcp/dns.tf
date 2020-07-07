@@ -29,8 +29,7 @@ resource "google_dns_record_set" "A" {
   # The time-to-live of this record set (seconds).
   ttl = 300
 
-  # The string data for the records in this record set whose
-  # meaning depends on the DNS type.
+  # The string data for the records in this record set.
   rrdatas = ["8.8.8.8"]
 }
 

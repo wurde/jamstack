@@ -1,7 +1,8 @@
 # Configure resources.
 
 module "aws" {
-  count  = var.cloud == "aws" ? 1 : 0
+  # count  = var.cloud == "aws" ? 1 : 0
+  count  = 0
   source = "./src/aws"
 
   dist_dir          = var.dist_dir

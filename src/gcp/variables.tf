@@ -1,16 +1,14 @@
 # Define input variables.
 # https://www.terraform.io/docs/configuration/variables.html
 
-variable "region" {
-  type        = string
-  description = "Which AWS region to use."
-  default     = "us-east-1"
-}
-
 variable "cloud" {
   type        = string
-  description = "What cloud provider? [AWS or GCP]"
-  default     = "aws"
+  description = "What cloud provider? Choose 'aws' or 'gcp'."
+}
+
+variable "region" {
+  type        = string
+  description = "Which region to use. Examples: 'us-east-1' for AWS or 'us-central1' for GCP."
 }
 
 variable "dist_dir" {
@@ -29,9 +27,9 @@ variable "alias_domains" {
   default     = []
 }
 
-variable "s3_bucket_domain" {
+variable "bucket_name" {
   type        = string
-  description = "The S3 root domain bucket."
+  description = "The name of the bucket."
   default     = ""
 }
 

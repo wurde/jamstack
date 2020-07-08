@@ -27,9 +27,9 @@ variable "alias_domains" {
   default     = []
 }
 
-variable "bucket_domain" {
+variable "bucket_name" {
   type        = string
-  description = "The root domain bucket."
+  description = "The name of the bucket."
   default     = ""
 }
 

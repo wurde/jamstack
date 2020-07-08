@@ -4,6 +4,7 @@
 variable "cloud" {
   type        = string
   description = "What cloud provider? Choose 'aws' or 'gcp'."
+  default     = "aws"
 }
 
 variable "dist_dir" {

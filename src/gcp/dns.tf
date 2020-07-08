@@ -7,7 +7,7 @@
 # https://www.terraform.io/docs/providers/google/r/dns_managed_zone.html
 resource "google_dns_managed_zone" "domain" {
   # The DNS name of this managed zone, for instance "example.com".
-  dns_name = var.domain
+  dns_name = "${var.domain}."
 
   # User assigned name for this resource.
   # Must be unique within the project.
@@ -16,33 +16,35 @@ resource "google_dns_managed_zone" "domain" {
 
 # https://www.terraform.io/docs/providers/google/r/dns_record_set.html
 resource "google_dns_record_set" "A" {
-  # The name of the zone in which this record set will reside.
+  # Name of your managed DNS zone.
   managed_zone = google_dns_managed_zone.domain.name
 
   # The DNS name this record set will apply to.
-  name = google_dns_managed_zone.prod.dns_name
+  name = google_dns_managed_zone.domain.dns_name
 
   # The record type. Valid values are A, AAAA, CAA, CNAME, MX, NAPTR,
   #   NS, PTR, SOA, SPF, SRV and TXT.
   type = "A"
 
   # The time-to-live of this record set (seconds).
-  ttl = 300
+  ttl = 86400
 
-  # The string data for the records in this record set.
-  rrdatas = ["8.8.8.8"]
+  # The string data for the records in this record set
+  rrdatas = [google_compute_global_address.cdn.address]
 }
 
-# https://www.terraform.io/docs/providers/google/r/dns_record_set.html
-resource "google_dns_record_set" "AAAA" {
+resource "google_dns_record_set" "CNAME" {
+  count = length(var.alias_domains)
+
   managed_zone = google_dns_managed_zone.domain.name
-  name         = google_dns_managed_zone.prod.dns_name
-  type         = "AAAA"
-  ttl          = 300
-  rrdatas      = ["8.8.8.8"]
+
+  name    = "${var.alias_domains[count.index]}."
+  type    = "CNAME"
+  rrdatas = [google_dns_managed_zone.domain.dns_name]
+  ttl     = 86400
 }
 
-resource "google_dns_managed_zone" "prod" {
-  name     = "prod-zone"
-  dns_name = "prod.mydomain.com."
+output "name_servers" {
+  value       = google_dns_managed_zone.domain.name_servers
+  description = "Use these custom name servers for your domain."
 }

@@ -2,10 +2,10 @@
 
 > **Warning:** This is NOT production-ready and breaking changes may occur.
 
-This Terraform module deploys a web application with
-support for AWS (GCP coming soon). It deploys pre-rendered
-assets to a static asset host. Those assets are distributed
-via a global content delivery network.
+A Terraform module for hosting a web app on AWS or GCP.
+This module assumes an app deployed using pre-rendered
+static assets distributed via global content delivery
+network.
 
 ## Consider this first
 
@@ -44,4 +44,5 @@ Terraform enables Infrastructure as Code.
 
 ## License
 
-This project is __FREE__ to use, reuse, remix, and resell. This is made possible by the [MIT license](/LICENSE).
+This project is __FREE__ to use, reuse, remix, and resell.
+This is made possible by the [MIT license](/LICENSE).

@@ -4,7 +4,7 @@
 # https://www.terraform.io/docs/providers/google/r/storage_bucket.html
 resource "google_storage_bucket" "domain" {
   # The name of the bucket.
-  name = var.s3_bucket_domain == "" ? var.domain : var.s3_bucket_domain
+  name = var.bucket_name == "" ? var.domain : var.bucket_name
 
   # The GCS location.
   location = "US"
@@ -28,15 +28,13 @@ resource "google_storage_bucket" "domain" {
       # Minimum age of an object in days to satisfy this condition.
       age = "30"
 
-      # Storage Class of objects to satisfy this condition.
-      matches_storage_class = "COLDLINE"
-
       # Match to live and/or archived objects.
       with_state = "ARCHIVED"
     }
 
     action {
-      type = "SetStorageClass"
+      type          = "SetStorageClass"
+      storage_class = "COLDLINE"
     }
   }
 
@@ -73,4 +71,16 @@ resource "google_storage_bucket_object" "dist" {
 
   # Content-Type of the object data. Defaults to "application/octet-stream".
   content_type = lookup(local.mime_types, split(".", each.value)[length(split(".", each.value)) - 1])
+}
+
+# https://www.terraform.io/docs/providers/google/r/storage_bucket_iam.html
+resource "google_storage_bucket_iam_member" "all_users_viewers" {
+  # Used to find the parent resource to bind the IAM policy to.
+  bucket = google_storage_bucket.domain.name
+
+  # The role that should be applied.
+  role = "roles/storage.legacyObjectReader"
+
+  # Identities that will be granted the privilege.
+  member = "allUsers"
 }

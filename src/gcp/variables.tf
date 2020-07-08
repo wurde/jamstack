@@ -6,11 +6,6 @@ variable "cloud" {
   description = "What cloud provider? Choose 'aws' or 'gcp'."
 }
 
-variable "region" {
-  type        = string
-  description = "Which region to use. Examples: 'us-east-1' for AWS or 'us-central1' for GCP."
-}
-
 variable "dist_dir" {
   type        = string
   description = "The distribution directory to serve via static asset host."

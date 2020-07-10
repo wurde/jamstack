@@ -21,7 +21,7 @@ save time and money. Consider these solutions first:
 Reasons why this module is a good candidate:
 
 - Infrastructure is already managed by Terraform.
-- Requirement to use a cloud-agnostic IaC solution.
+- Requirement for a cloud-agnostic IaC solution.
 
 ## Getting started
 
@@ -37,6 +37,27 @@ module "static-website" {
   alias_domains = ["www.example.com"]
 }
 ```
+
+Next run `terraform apply`. Or automate via CI/CD pipelines
+(GitHub Actions?).
+
+A necessary manual step is adding the custom DNS name
+servers to your domain name provider (Google Domains?).
+This enables domain ownership verification.
+
+Example name servers provided by AWS:
+
+    ns-111.awsdns-32.net. 
+    ns-1211.awsdns-9.co.uk.
+    ns-153.awsdns-10.com.
+    ns-1138.awsdns-14.org.
+
+Example name servers provided by GCP:
+
+    ns-cloud-x1.googledomains.com.
+    ns-cloud-x2.googledomains.com.
+    ns-cloud-x3.googledomains.com.
+    ns-cloud-x4.googledomains.com.
 
 ## Why Terraform?
 

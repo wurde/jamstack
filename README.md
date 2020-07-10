@@ -61,6 +61,9 @@ Example name servers provided by GCP:
 
 ## Pricing Estimate
 
+Use AWS. Google Cloud is a fallback, but they are NOT price
+competitive due to costs associated Global Forwarding Rules.
+
 - AWS: **~2 dollars a month.**
   Primary charges are Route53 Hosted Zone and S3 storage.
 - GCP: **~20 dollars a month.**

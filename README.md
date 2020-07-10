@@ -31,7 +31,8 @@ Example usage within a Terraform configuration:
 module "static-website" {
   source = "github.com/wurde/web-app"
 
-  dist_dir      = "public"
+  cloud         = "aws"
+  dist_dir      = "./public"
   domain        = "example.com"
   alias_domains = ["www.example.com"]
 }

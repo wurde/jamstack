@@ -4,7 +4,7 @@
 # https://www.terraform.io/docs/providers/aws/r/s3_bucket.html
 resource "aws_s3_bucket" "domain" {
   # The name of the bucket.
-  bucket = var.bucket_name == "" ? var.domain : var.bucket_name
+  bucket = local.bucket_name
 
   # The canned ACL to apply. Defaults to "private".
   #   https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl
@@ -65,7 +65,7 @@ resource "aws_s3_bucket_policy" "domain_policy" {
                 "s3:GetObject"
             ],
             "Resource": [
-                "arn:aws:s3:::${var.bucket_name == "" ? var.domain : var.bucket_name}/*"
+                "arn:aws:s3:::${local.bucket_name}/*"
             ]
         }
     ]

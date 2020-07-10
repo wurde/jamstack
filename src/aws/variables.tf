@@ -23,13 +23,6 @@ variable "alias_domains" {
   default     = []
 }
 
-# Remove. Replace with sane default.
-variable "bucket_name" {
-  type        = string
-  description = "The name of the bucket."
-  default     = ""
-}
-
 variable "default_ttl" {
   type        = number
   description = "The default TTL in seconds (default is 1 day)."

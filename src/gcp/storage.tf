@@ -4,7 +4,7 @@
 # https://www.terraform.io/docs/providers/google/r/storage_bucket.html
 resource "google_storage_bucket" "domain" {
   # The name of the bucket.
-  name = var.bucket_name == "" ? var.domain : var.bucket_name
+  name = local.bucket_name
 
   # The GCS location.
   location = "US"

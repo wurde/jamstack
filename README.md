@@ -59,6 +59,13 @@ Example name servers provided by GCP:
     ns-cloud-x3.googledomains.com.
     ns-cloud-x4.googledomains.com.
 
+## Pricing Estimate
+
+- AWS: **~2 dollars a month.**
+  Primary charges are Route53 Hosted Zone and S3 storage.
+- GCP: **~20 dollars a month.**
+  Primary charges are Global Forwarding Rules.
+
 ## Why Terraform?
 
 Terraform enables Infrastructure as Code.

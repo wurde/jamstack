@@ -12,6 +12,4 @@ terraform {
       region  = "us-central1"
     }
   }
-
-  required_version = ">= 0.13"
 }

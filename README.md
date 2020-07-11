@@ -1,7 +1,5 @@
 # Web Application
 
-> **Warning:** This is NOT production-ready and breaking changes may occur.
-
 A Terraform module for hosting a web app on AWS or GCP.
 This module assumes an app deployed using pre-rendered
 static assets distributed via global content delivery
